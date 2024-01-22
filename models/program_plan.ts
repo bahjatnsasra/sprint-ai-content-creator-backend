@@ -9,5 +9,4 @@ const programPlanSchema  = new Schema({
     picture : String,
 })
 
-const ProgramPlan = model("programPlan", programPlanSchema) 
-module.exports = ProgramPlan
+export const ProgramPlan = model("programPlan", programPlanSchema) 
