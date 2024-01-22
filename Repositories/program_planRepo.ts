@@ -1,16 +1,44 @@
 import { ProgramPlan } from '../models/program_plan'
+import { ProgramPlanStructure } from "../interface/ProgramPlan";
 
 export class ProgramPlanRepositories {
-    async createProgramPlan() {
-        const newProgramPlan = new ProgramPlan({
-            description: "description1",
-            extendedSubject: "extendedSubject1",
-            goals: "goals1",
-            picture: "picture1",
-            structure: "structure1",
-            subject: "subject1"
-        })
-        newProgramPlan.save()
-        return newProgramPlan
+    async createProgramPlan(programPlan : ProgramPlanStructure) {
+        try {
+            const newProgramPlan = new ProgramPlan(programPlan)
+            newProgramPlan.save()
+            return newProgramPlan
+        } catch (error) {
+            throw(error)
+        }
+    }
+
+    async getProgramPlanByID(programPlanId: string) {
+        try {
+            const programPlan = await ProgramPlan.findById(programPlanId).exec()
+            if(!programPlan) {throw ("Can't Find Program Plan")}
+            return programPlan
+        } catch (error) {
+            throw(error)
+        }
+    }
+
+    async deleteProgramPlanByID(programPlanId: string){
+        try {
+            const programPlan = await ProgramPlan.findById(programPlanId).exec()
+            if(!programPlan) {throw ("Can't Find Program Plan")}
+            await ProgramPlan.findByIdAndDelete({_id:programPlanId})
+        } catch (error) {
+            throw(error)
+        }
+    }
+
+    async updateProgramPlanByID(programPlanId: string , data : ProgramPlanStructure) {
+        try {
+            const programPlan = await ProgramPlan.findById(programPlanId).exec()
+            if(!programPlan) {throw ("Can't Find Program Plan")}
+            await ProgramPlan.findByIdAndUpdate(programPlanId, data)
+        } catch (error) {
+            throw(error)
+        }
     }
 }
