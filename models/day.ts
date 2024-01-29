@@ -5,5 +5,4 @@ const daySchema  = new Schema({
     tasks : String
 })
 
-const Day = model("day", daySchema) 
-module.exports = Day
+export const Day = model("day", daySchema) 

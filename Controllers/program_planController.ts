@@ -8,6 +8,7 @@ export class ProgramPlanController {
     async createNewProgramPlan(req: Request , res: Response){
         try {
             const newProgramPlan = req.body
+            const weekPlanId = req.params.weekPlanId
             await programPlanRepo.createProgramPlan(newProgramPlan)
             res.status(200).send('program plan created successfully').end()
         } catch (error) {

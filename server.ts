@@ -1,6 +1,9 @@
 import express from 'express';
 import { DataBaseManager } from './models/database_manager'
 import  programPlanApi  from './Routes/program_planRoutes'
+import  weekPlanApi from './Routes/week_planRoutes'
+import  dayApi from './Routes/dayRouts'
+
 import 'dotenv/config'
 
 const DBManager = new DataBaseManager()
@@ -12,6 +15,9 @@ DBManager.connectToDB()
 
 
 app.use('/ProgramPlan',programPlanApi)
+app.use('/WeekPlan',weekPlanApi)
+app.use('/Day',dayApi)
+
 
 const port = process.env.PORT 
 app.listen(port, () => {
