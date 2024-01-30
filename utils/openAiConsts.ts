@@ -5,7 +5,7 @@ const apikey = process.env.openAiApiKey
 
 export const OpenAIUrl = "https://api.openai.com/v1/chat/completions"
 export const openAiheaders = {
-    "Authorization" : `Bearer ${apikey}`,
+	"Authorization": `Bearer ${process.env.API_KEY}`,
     "Content-Type" : "application/json"
 }
 
