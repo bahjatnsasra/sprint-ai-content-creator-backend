@@ -1,11 +1,13 @@
 import express from 'express';
 import { DataBaseManager } from './models/database_manager'
+import { OpenAiService } from './utils/openAiUtils';
 import  programPlanApi  from './Routes/program_planRoutes'
 import  weekPlanApi from './Routes/week_planRoutes'
 import  dayApi from './Routes/dayRouts'
-
+import openAiApi from './Routes/openAiRoutes'
 import 'dotenv/config'
 
+const openAiService = new OpenAiService()
 const DBManager = new DataBaseManager()
 
 const app = express();
@@ -17,7 +19,7 @@ DBManager.connectToDB()
 app.use('/ProgramPlan',programPlanApi)
 app.use('/WeekPlan',weekPlanApi)
 app.use('/Day',dayApi)
-
+app.use('/OpenAI',openAiApi)
 
 const port = process.env.PORT 
 app.listen(port, () => {
