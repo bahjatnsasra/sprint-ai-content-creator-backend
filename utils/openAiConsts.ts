@@ -1,7 +1,7 @@
 export const OpenAIUrl = "https://api.openai.com/v1/chat/completions"
 
 export const openAiheaders = {
-    "Authorization" : "Bearer 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",
+	"Authorization": `Bearer ${process.env.API_KEY}`,
     "Content-Type" : "application/json"
 }
 
