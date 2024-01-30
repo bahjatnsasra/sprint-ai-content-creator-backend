@@ -11,4 +11,15 @@ export class OpenAiController {
             res.status(400).send(error).end()
         }
     }
+
+
+    async generateSubSubjects(req: Request , res: Response){
+        try {
+            const subject = req.params.subject
+            const subjectList = await openAiService.generateSubTopics(subject)
+            res.status(200).send(subjectList).end()
+        } catch (error) {
+            res.status(400).send(error).end()
+        }
+    }
 }

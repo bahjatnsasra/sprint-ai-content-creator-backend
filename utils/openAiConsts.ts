@@ -1,9 +1,25 @@
-export const OpenAIUrl = "https://api.openai.com/v1/chat/completions"
+import 'dotenv/config'
 
+
+const apikey = process.env.openAiApiKey
+
+export const OpenAIUrl = "https://api.openai.com/v1/chat/completions"
 export const openAiheaders = {
-    "Authorization" : "Bearer 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",
+    "Authorization" : `Bearer ${apikey}`,
     "Content-Type" : "application/json"
 }
+
+export const requestOptions = {
+	method: 'post',
+	url: OpenAIUrl,
+	data: {},
+	headers: openAiheaders
+} 
+
+
+
+
+
 
 export const OpenAIGenerateSubjects = 
 {
@@ -27,4 +43,17 @@ export const OpenAIGenerateSubjects =
 			}
 		}
 	}]
+}
+
+export function OpenAIGenerateSubTopics(subject:string) {
+	return {
+		"model": "gpt-4",
+		"messages": [
+			{
+				"role": "user",
+				"content": `Your topic is ${subject}. Provide 3 creative subtopics related to ${subject} suitable for 8-year-old children. don't dive into details about them, just present a subtopics it self with no more info. Expected Response (Format): { subTopics : [subTopic1,subTopic2,subTopic3]}`
+			}
+		],
+		"temperature": 0.5
+	}
 }

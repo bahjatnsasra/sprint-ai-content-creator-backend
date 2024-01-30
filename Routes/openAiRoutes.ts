@@ -5,6 +5,6 @@ const router = Router();
 
 
 router.get('/get/subjects' , openAiController.generateSubjects)
-
+router.get('/get/subTopics/:subject' , openAiController.generateSubSubjects)
 
 export = router;
