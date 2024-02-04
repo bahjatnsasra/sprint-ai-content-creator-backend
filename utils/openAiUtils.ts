@@ -1,5 +1,5 @@
 import  axios  from 'axios'
-import { OpenAIGenerateSubjects, OpenAIGenerateSubTopics, requestOptions} from './openAiConsts'
+import { OpenAIGenerateDescription, OpenAIGenerateSubjects, OpenAIGenerateSubTopics, requestOptions} from './openAiConsts'
 
 export class OpenAiService {
 
@@ -21,6 +21,18 @@ export class OpenAiService {
 			const responseData = (await axios(requestOptions)).data.choices[0].message.content
 			const subTopicsList = JSON.parse(responseData).subTopics
 			return subTopicsList
+		} catch (error) {
+			throw error
+		}
+	}
+
+	async generateDescription(subject: string) {
+		try {
+			requestOptions.data = OpenAIGenerateDescription(subject)
+			const responseData = (await axios(requestOptions)).data.choices[0].message.content
+			const subTopicsList = JSON.parse(responseData)
+			console.log(subTopicsList)
+			return responseData
 		} catch (error) {
 			throw error
 		}

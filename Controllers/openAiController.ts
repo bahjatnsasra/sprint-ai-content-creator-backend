@@ -22,4 +22,15 @@ export class OpenAiController {
             res.status(400).send(error).end()
         }
     }
+
+    async generateDesc(req: Request , res: Response){
+        try {
+            const subject = req.params.subject
+            const subjectDescription = await openAiService.generateDescription(subject)
+            res.status(200).send(subjectDescription).end()
+        } catch (error) {
+            res.status(400).send(error).end()
+        }
+    }
+    
 }
