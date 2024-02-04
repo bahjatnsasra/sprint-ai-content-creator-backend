@@ -15,7 +15,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended : false}))
 DBManager.connectToDB()
 
-openAiService.generateSubTopics('banana')
 
 app.use('/ProgramPlan',programPlanApi)
 app.use('/WeekPlan',weekPlanApi)

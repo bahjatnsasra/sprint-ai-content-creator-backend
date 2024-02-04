@@ -57,3 +57,6 @@ export function OpenAIGenerateSubTopics(subject:string) {
 		"temperature": 0.5
 	}
 }
+
+
+

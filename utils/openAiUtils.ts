@@ -25,4 +25,5 @@ export class OpenAiService {
 			throw error
 		}
 	}
+
 }
