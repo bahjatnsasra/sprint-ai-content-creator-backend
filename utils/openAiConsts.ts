@@ -1,24 +1,36 @@
 import 'dotenv/config'
 
-
 const apikey = process.env.openAiApiKey
 
+// GPT
 export const OpenAIUrl = "https://api.openai.com/v1/chat/completions"
 export const openAiheaders = {
 	"Authorization": `Bearer ${process.env.API_KEY}`,
     "Content-Type" : "application/json"
 }
 
+// GPT
 export const requestOptions = {
 	method: 'post',
 	url: OpenAIUrl,
 	data: {},
 	headers: openAiheaders
-} 
+}
 
+// dall E 
+export const DALLEUrl = "https://api.openai.com/v1/images/generations";
+export const dalleHeaders = {
+	"Authorization": `Bearer ${process.env.API_KEY}`,
+    "Content-Type": "application/json"
+};
 
-
-
+// dall E 
+export const requestOptionsDalle = {
+    method: 'post',
+    url: DALLEUrl,
+    data: {},
+    headers: dalleHeaders
+};
 
 
 export const OpenAIGenerateSubjects = 
@@ -65,9 +77,18 @@ export function OpenAIGenerateDescription(subject:string) {
 		"messages": [
 			{
 				"role": "user",
-				"content": `I want to create educational process to childrens at the age of 8. my subject is: ${subject}.give me little description about whats we gonne learn in the process of 1 line (not more than 15 words). dont number the answers. write them in one connected paragraph (not more than 15 words).`
+				"content": `I want to create educational process to childrens at the age of 8. my subject is: ${subject}.give me little description about whats we gonne learn in the process of 1 line (not more than 15 words). dont number the answers. write them in one connected paragraph (not more than 15 words). give the answer in hebrew!`
 			}
 		],
 		"temperature": 0.7
 	}
+}
+
+export function CreateImg(subject:string) {
+	return {
+            "model": "dall-e-3",
+                "prompt": `Make illustration of ${subject}. illustration, flat, comics style for teenagers. make width cover size.,
+                "n": 1,
+                "size": "1792x1024`
+            }
 }

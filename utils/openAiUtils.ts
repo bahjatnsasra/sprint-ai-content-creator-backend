@@ -1,5 +1,5 @@
 import  axios  from 'axios'
-import { OpenAIGenerateDescription, OpenAIGenerateSubjects, OpenAIGenerateSubTopics, requestOptions} from './openAiConsts'
+import { CreateImg, OpenAIGenerateDescription, OpenAIGenerateSubjects, OpenAIGenerateSubTopics, requestOptions} from './openAiConsts'
 
 export class OpenAiService {
 
@@ -30,8 +30,8 @@ export class OpenAiService {
 		try {
 			requestOptions.data = OpenAIGenerateDescription(subject)
 			const responseData = (await axios(requestOptions)).data.choices[0].message.content
-			const subTopicsList = JSON.parse(responseData)
-			console.log(subTopicsList)
+			//const subTopicsList = JSON.parse(responseData)
+			console.log(responseData)
 			return responseData
 		} catch (error) {
 			throw error
