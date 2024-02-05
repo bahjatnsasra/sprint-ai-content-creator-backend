@@ -9,12 +9,13 @@ import 'dotenv/config'
 
 const openAiService = new OpenAiService()
 const DBManager = new DataBaseManager()
-
+7
 const app = express();
 app.use(express.json())
 app.use(express.urlencoded({extended : false}))
 DBManager.connectToDB()
 
+openAiService.generateDescription('banana')
 
 app.use('/ProgramPlan',programPlanApi)
 app.use('/WeekPlan',weekPlanApi)

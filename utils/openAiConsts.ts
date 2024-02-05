@@ -59,4 +59,15 @@ export function OpenAIGenerateSubTopics(subject:string) {
 }
 
 
-
+export function OpenAIGenerateDescription(subject:string) {
+	return {
+		"model": "gpt-4",
+		"messages": [
+			{
+				"role": "user",
+				"content": `I want to create educational process to childrens at the age of 8. my subject is: ${subject}.give me little description about whats we gonne learn in the process of 1 line (not more than 15 words). dont number the answers. write them in one connected paragraph (not more than 15 words).`
+			}
+		],
+		"temperature": 0.7
+	}
+}
