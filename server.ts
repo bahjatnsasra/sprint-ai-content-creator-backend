@@ -15,14 +15,14 @@ app.use(express.json())
 app.use(express.urlencoded({extended : false}))
 DBManager.connectToDB()
 
-openAiService.generateDescription('banana')
+// openAiService.generateProgramStructure('banana',"the advantages of banana" , "openAi")
 
 app.use('/ProgramPlan',programPlanApi)
 app.use('/WeekPlan',weekPlanApi)
 app.use('/Day',dayApi)
 app.use('/OpenAI',openAiApi)
 
-const port = process.env.PORT 
+const port = process.env.PORT
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });

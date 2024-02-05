@@ -4,5 +4,6 @@ export interface ProgramPlanStructure {
     goals:string,
     picture: string,
     structure: string,
-    subject: string
+    subject: string,
+    contentType: string
 }

@@ -1,13 +1,16 @@
 import { ProgramPlanRepositories } from "../Repositories/program_planRepo";
 import { Request ,Response } from 'express';
-
+import { ProgramPlanStructure } from "../interface/ProgramPlan";
+import { ProgramPlanSerivce } from "../utils/program_planUtils";
 const programPlanRepo = new ProgramPlanRepositories();
+const programPlanService = new ProgramPlanSerivce()
 
 
 export class ProgramPlanController {
     async createNewProgramPlan(req: Request , res: Response){
         try {
-            const newProgramPlan = req.body
+            const requestData: ProgramPlanStructure = req.body
+            const newProgramPlan = await programPlanService.programPlanHelper(requestData)
             await programPlanRepo.createProgramPlan(newProgramPlan)
             res.status(200).send('program plan created successfully').end()
         } catch (error) {
