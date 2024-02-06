@@ -7,5 +7,7 @@ const router = Router();
 router.get('/get/subjects' , openAiController.generateSubjects)
 router.get('/get/subTopics/:subject' , openAiController.generateSubSubjects)
 router.get('/get/description/:subject' , openAiController.generateDescription)
+router.get('/get/image/:subject' , openAiController.generateImage)
+
 
 export = router;
