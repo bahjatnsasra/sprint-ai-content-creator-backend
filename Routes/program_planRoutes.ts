@@ -5,7 +5,7 @@ const programPlanController = new ProgramPlanController()
 const router = Router();
 
 
-router.post('/:weekPlanId/create' , programPlanController.createNewProgramPlan)
+router.post('/create' , programPlanController.createNewProgramPlan)
 router.get('/:id/get' , programPlanController.getProgramPlanById)
 router.delete('/:id/delete' , programPlanController.deleteProgramPlanById)
 router.put('/:id/update' , programPlanController.updateProgramPlanById)

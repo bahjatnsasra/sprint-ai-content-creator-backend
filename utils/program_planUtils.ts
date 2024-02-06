@@ -10,11 +10,10 @@ export class ProgramPlanSerivce {
             contentType:requestData.contentType,
             goals: requestData.goals,
             picture: requestData.picture,
-            structure:await openAiService.generateProgramStructure(requestData.subject,requestData.goals,requestData.contentType),
+            structure: await openAiService.generateProgramStructure(requestData.subject,requestData.goals,requestData.contentType),
             description:'',
             extendedSubject: '',
         } ;
-
         return programPlan
     }
 }

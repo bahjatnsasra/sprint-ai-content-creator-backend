@@ -3,7 +3,7 @@ import { WeekPlan } from "../models/week_plan";
 
 
 export class WeekPlanRepo {
-    async createWeekPlan(programPlanId: string ,weekPlan: WeekPlanStructure) {
+    async createWeekPlan(programPlanId: String) {
         try {
             const newWeekPlan = new WeekPlan()
             await newWeekPlan.save()

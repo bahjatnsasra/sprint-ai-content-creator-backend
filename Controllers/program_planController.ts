@@ -11,8 +11,8 @@ export class ProgramPlanController {
         try {
             const requestData: ProgramPlanStructure = req.body
             const newProgramPlan = await programPlanService.programPlanHelper(requestData)
-            await programPlanRepo.createProgramPlan(newProgramPlan)
-            res.status(200).send('program plan created successfully').end()
+            const programPlan = await programPlanRepo.createProgramPlan(newProgramPlan)
+            res.status(200).json({messgae: 'program plan created successfully' , object: programPlan}).end()
         } catch (error) {
             res.status(400).send(error).end()
         }
