@@ -1,12 +1,12 @@
 import { ProgramPlan } from '../models/program_plan'
-import { ProgramPlanStructure } from "../interface/ProgramPlan";
+import { ProgramPlanData, ProgramPlanStructure } from "../interface/ProgramPlan";
 import { WeekPlanRepo } from './week_planRepo';
 
 const weekPlanRepo = new WeekPlanRepo()
 
 export class ProgramPlanRepositories {
 
-    async createProgramPlan(programPlan : ProgramPlanStructure) {
+    async createProgramPlan(programPlan : ProgramPlanData) {
         try {
             const newProgramPlan = new ProgramPlan(programPlan)
             await newProgramPlan.save()

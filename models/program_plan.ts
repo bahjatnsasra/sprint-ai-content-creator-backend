@@ -7,6 +7,7 @@ const programPlanSchema  = new Schema({
     goals : String,
     extendedSubject : String,
     picture : String,
+    contentType: Boolean
 })
 
 export const ProgramPlan = model("programPlan", programPlanSchema) 

@@ -1,18 +1,17 @@
-import { ProgramPlanStructure } from "../interface/ProgramPlan";
+import { ProgramPlanData, ProgramPlanStructure } from "../interface/ProgramPlan";
 import { OpenAiService } from "../utils/openAiUtils";
 const openAiService = new OpenAiService()
 
 
 export class ProgramPlanSerivce {
-    async programPlanHelper (requestData : ProgramPlanStructure) {
-        const programPlan: ProgramPlanStructure = {
+    async programPlanHelper (requestData : ProgramPlanData) {
+        console.log(requestData);
+        const programPlan: ProgramPlanData = {
             subject:  requestData.subject,
-            contentType:requestData.contentType,
-            goals: requestData.goals,
-            picture: requestData.picture,
             structure: await openAiService.generateProgramStructure(requestData.subject,requestData.goals,requestData.contentType),
-            description:'',
-            extendedSubject: '',
+            goals: requestData.goals,
+            contentType:requestData.contentType,
+            picture: requestData.picture,
         } ;
         return programPlan
     }

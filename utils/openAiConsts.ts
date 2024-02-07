@@ -75,7 +75,7 @@ export function OpenAIGenerateImage	(subject:string) {
             }
 }
 
-export function OpenAIGenerateProgramStructure	(subject:string, contentType:string, learn:string) {
+export function OpenAIGenerateProgramStructure	(subject:string, contentType:boolean, learn:string) {
 	return {
 		"model": "gpt-4",
 		"messages": [{

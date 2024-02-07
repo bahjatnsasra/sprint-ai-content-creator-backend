@@ -7,3 +7,12 @@ export interface ProgramPlanStructure {
     subject: string,
     contentType: string
 }
+
+
+export interface ProgramPlanData {
+    subject: string, 
+    structure : string 
+    goals: string, 
+    contentType: boolean, 
+    picture: string,
+}

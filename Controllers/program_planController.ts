@@ -1,6 +1,6 @@
 import { ProgramPlanRepositories } from "../Repositories/program_planRepo";
 import { Request ,Response } from 'express';
-import { ProgramPlanStructure } from "../interface/ProgramPlan";
+import { ProgramPlanData, ProgramPlanStructure } from "../interface/ProgramPlan";
 import { ProgramPlanSerivce } from "../utils/program_planUtils";
 const programPlanRepo = new ProgramPlanRepositories();
 const programPlanService = new ProgramPlanSerivce()
@@ -9,9 +9,10 @@ const programPlanService = new ProgramPlanSerivce()
 export class ProgramPlanController {
     async createNewProgramPlan(req: Request , res: Response){
         try {
-            const requestData: ProgramPlanStructure = req.body
+            const requestData: ProgramPlanData = req.body
             const newProgramPlan = await programPlanService.programPlanHelper(requestData)
             const programPlan = await programPlanRepo.createProgramPlan(newProgramPlan)
+            console.log(newProgramPlan);
             res.status(200).json({messgae: 'program plan created successfully' , object: programPlan}).end()
         } catch (error) {
             res.status(400).send(error).end()

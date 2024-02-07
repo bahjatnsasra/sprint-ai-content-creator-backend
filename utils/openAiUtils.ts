@@ -48,7 +48,7 @@ export class OpenAiService {
 		}
 	}
 
-	async generateProgramStructure(subject: string, learn:string , contentType:string) {
+	async generateProgramStructure(subject: string, learn:string , contentType:boolean) {
 		try {
 			requestOptions.data = OpenAIGenerateProgramStructure(subject,contentType,learn)
 			const responseData = (await axios(requestOptions)).data
