@@ -45,7 +45,7 @@ export function OpenAIGenerateSubTopics(subject:string) {
 		"messages": [
 			{
 				"role": "user",
-				"content": `Your topic is ${subject}. Provide 3 creative subtopics related to ${subject} suitable for 8-year-old children. don't dive into details about them, just present a subtopics it self with no more info. Give the answer in hebrew. Expected Response (Format): { subTopics : [subTopic1,subTopic2,subTopic3]}`
+				"content": `Your topic is ${subject}. Provide 3 creative subtopics related to ${subject} suitable for 8-year-old children. don't dive into details about them, just present a subtopics it self with no more info. Expected Response (Format): { subTopics : [subTopic1,subTopic2,subTopic3]}`
 			}
 		],
 		"temperature": 0.5
