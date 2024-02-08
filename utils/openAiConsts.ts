@@ -45,7 +45,7 @@ export function OpenAIGenerateSubTopics(subject:string) {
 		"messages": [
 			{
 				"role": "user",
-				"content": `Your topic is ${subject}. Provide 3 creative subtopics related to ${subject} suitable for 8-year-old children. don't dive into details about them, just present a subtopics it self with no more info. Expected Response (Format): { subTopics : [subTopic1,subTopic2,subTopic3]}`
+				"content": `Your topic is ${subject}. Provide 3 creative subtopics related to ${subject} suitable for 8-year-old children. don't dive into details about them, just present a subtopics it self with no more info. Give the answer in hebrew. Expected Response (Format): { subTopics : [subTopic1,subTopic2,subTopic3]}`
 			}
 		],
 		"temperature": 0.5
@@ -97,7 +97,8 @@ export function OpenAIGenerateProgramStructure	(subject:string, contentType:bool
 			Use simple words that children know. Use words that 8 year olds understand. 
 			build missions that 8 years old children can do. 
 			Pay attention to the instructions of the tasks.
-			Emphasize that the tasks will not be similar`
+			Emphasize that the tasks will not be similar.
+			give me the answer in hebrew!`
 		}],
 		"temperature": 0.7
 		}
