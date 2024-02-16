@@ -45,7 +45,7 @@ export function OpenAIGenerateSubTopics(subject:string) {
 		"messages": [
 			{
 				"role": "user",
-				"content": `Your topic is ${subject}. Provide 3 creative subtopics related to ${subject} suitable for 8-year-old children. don't dive into details about them, just present a subtopics it self with no more info. Expected Response (Format): { subTopics : [subTopic1,subTopic2,subTopic3]}`
+				"content": `Your topic is ${subject}. Provide 3 creative subtopics related to ${subject} suitable for 8-year-old children. give the data in hebrew! don't dive into details about them, just present a subtopics it self with no more info. Expected Response (Format): { subTopics : [subTopic1,subTopic2,subTopic3]}`
 			}
 		],
 		"temperature": 0.5
@@ -66,13 +66,13 @@ export function OpenAIGenerateDescription(subject:string) {
 	}
 }
 
-export function OpenAIGenerateImage	(subject:string) {
-	return {
-            "model": "dall-e-3",
-                "prompt": `Make illustration of ${subject}. illustration, flat, comics style for teenagers. make width cover size.,
-                "n": 1,
-                "size": "1792x1024`
-            }
+export function OpenAIGenerateImage(subject: string) {
+    return {
+        "model": "dall-e-3",
+        "prompt": `Make illustration of ${subject}. illustration, flat, comics style for teenagers. make width cover size.`,
+        "n": 1,
+        "size": "1792x1024"
+    };
 }
 
 export function OpenAIGenerateProgramStructure	(subject:string, contentType:boolean, learn:string) {
