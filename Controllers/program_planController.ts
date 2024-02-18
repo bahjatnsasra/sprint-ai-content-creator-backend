@@ -9,12 +9,12 @@ const programPlanService = new ProgramPlanSerivce()
 export class ProgramPlanController {
     async createNewProgramPlan(req: Request , res: Response){
         try {
-            const requestData: ProgramPlanData = req.body
+            const requestData = req.body
             const newProgramPlan = await programPlanService.programPlanHelper(requestData)
             const programPlan = await programPlanRepo.createProgramPlan(newProgramPlan)
-            console.log(newProgramPlan);
             res.status(200).json({messgae: 'program plan created successfully' , object: programPlan}).end()
         } catch (error) {
+            console.log('program plan Controller error');
             res.status(400).send(error).end()
         }
     }

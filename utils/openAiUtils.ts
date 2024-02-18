@@ -48,13 +48,15 @@ export class OpenAiService {
 		}
 	}
 
-	async generateProgramStructure(subject: string, learn:string , contentType:boolean) {
+	generateProgramStructure = async (subject: string, learn:string , contentType:boolean) => {
 		try {
 			requestOptions.data = OpenAIGenerateProgramStructure(subject,contentType,learn)
+
 			const responseData = (await axios(requestOptions)).data
 			const structure = responseData.choices[0].message.content
 			return structure
 		} catch (error) {
+			console.log(error);
 			throw error
 		}
 	}

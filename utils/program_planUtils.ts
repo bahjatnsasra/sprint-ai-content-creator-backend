@@ -5,7 +5,6 @@ const openAiService = new OpenAiService()
 
 export class ProgramPlanSerivce {
     async programPlanHelper (requestData : ProgramPlanData) {
-        console.log(requestData);
         const programPlan: ProgramPlanData = {
             subject:  requestData.subject,
             structure: await openAiService.generateProgramStructure(requestData.subject,requestData.goals,requestData.contentType),

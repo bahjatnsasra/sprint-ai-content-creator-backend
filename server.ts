@@ -1,4 +1,5 @@
 import express from 'express';
+import { Request, Response, NextFunction  } from "express";
 import { DataBaseManager } from './models/database_manager'
 import { OpenAiService } from './utils/openAiUtils';
 import  programPlanApi  from './Routes/program_planRoutes'
@@ -11,6 +12,14 @@ const openAiService = new OpenAiService()
 const DBManager = new DataBaseManager()
 7
 const app = express();
+
+app.use(function (req: Request, res: Response, next: NextFunction) {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With')
+    next()
+})
+
 app.use(express.json())
 app.use(express.urlencoded({extended : false}))
 DBManager.connectToDB()

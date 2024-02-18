@@ -1,8 +1,6 @@
 import { ProgramPlan } from '../models/program_plan'
 import { ProgramPlanData, ProgramPlanStructure } from "../interface/ProgramPlan";
-import { WeekPlanRepo } from './week_planRepo';
 
-const weekPlanRepo = new WeekPlanRepo()
 
 export class ProgramPlanRepositories {
 
@@ -12,6 +10,8 @@ export class ProgramPlanRepositories {
             await newProgramPlan.save()
             return newProgramPlan
         } catch (error) {
+            console.log('program plan Repo error');
+            console.log(error);
             throw(error)
         }
     }

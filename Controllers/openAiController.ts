@@ -37,11 +37,25 @@ export class OpenAiController {
         try {
             const subject = req.params.subject
             const image = await openAiService.generateImage(subject)
-            
             res.status(200).send(image).end()
         } catch (error) {
             res.status(400).send(error).end()
         }
     }
+
+
+    generateStructure = async (req: Request , res: Response) => {
+        try {
+            const subject = req.body.subject
+            const goals = req.body.goals
+            const ContainAI = req.body.contentType
+            const structure = await openAiService.generateProgramStructure(subject,goals,ContainAI)
+            res.status(200).send(structure).end()
+        } catch (error) {
+            res.status(400).send(error).end()
+        }
+    }
+
+
     
 }
