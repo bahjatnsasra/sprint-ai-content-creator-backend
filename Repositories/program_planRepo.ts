@@ -8,7 +8,7 @@ export class ProgramPlanRepositories {
         try {
             const newProgramPlan = new ProgramPlan(programPlan)
             await newProgramPlan.save()
-            return newProgramPlan
+            return newProgramPlan.id
         } catch (error) {
             console.log('program plan Repo error');
             console.log(error);

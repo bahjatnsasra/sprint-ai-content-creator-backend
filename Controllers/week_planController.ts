@@ -8,8 +8,8 @@ export class WeekPlanController {
     async createNewWeekPlan(req: Request , res: Response){
         try {
             const programPlanId = req.params.programPlanId
-            await weekPlanRepo.createWeekPlan(programPlanId)
-            res.status(200).send('week plan created successfully').end()
+            const weekPlanId = await weekPlanRepo.createWeekPlan(programPlanId)
+            res.status(200).send(weekPlanId).end()
         } catch (error) {
             res.status(400).send(error).end()
         }

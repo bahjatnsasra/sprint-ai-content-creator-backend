@@ -12,7 +12,7 @@ export class ProgramPlanController {
             const requestData = req.body
             const newProgramPlan = await programPlanService.programPlanHelper(requestData)
             const programPlan = await programPlanRepo.createProgramPlan(newProgramPlan)
-            res.status(200).json({messgae: 'program plan created successfully' , object: programPlan}).end()
+            res.status(200).send(programPlan).end()
         } catch (error) {
             console.log('program plan Controller error');
             res.status(400).send(error).end()

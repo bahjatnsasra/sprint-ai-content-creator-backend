@@ -45,7 +45,7 @@ export function OpenAIGenerateSubTopics(subject:string) {
 		"messages": [
 			{
 				"role": "user",
-				"content": `Your topic is ${subject}. Provide 3 creative subtopics related to ${subject} suitable for 8-year-old children. don't dive into details about them, just present a subtopics it self with no more info. Expected Response (Format): { subTopics : [subTopic1,subTopic2,subTopic3]}`
+				"content": `Your topic is ${subject}. Provide 3 creative subtopics related to ${subject} suitable for 8-year-old children. give the data in hebrew! don't dive into details about them, just present a subtopics it self with no more info. Expected Response (Format): { subTopics : [subTopic1,subTopic2,subTopic3]}`
 			}
 		],
 		"temperature": 0.5
@@ -66,33 +66,34 @@ export function OpenAIGenerateDescription(subject:string) {
 	}
 }
 
-export function OpenAIGenerateImage	(subject:string) {
-	return {
-            "model": "dall-e-3",
-                "prompt": `Make illustration of ${subject}. illustration, flat, comics style for teenagers. make width cover size.,
-                "n": 1,
-                "size": "1792x1024`
-            }
+export function OpenAIGenerateImage(subject: string) {
+    return {
+        "model": "dall-e-3",
+        "prompt": `Make illustration of ${subject}. illustration, flat, comics style for teenagers. make width cover size.`,
+        "n": 1,
+        "size": "1792x1024"
+    };
 }
 
-export function OpenAIGenerateProgramStructure	(subject:string, contentType:boolean, learn:string) {
-	return {
+
+export const day1Prompt = (programStructure : string) => {
+    return  {
 		"model": "gpt-4",
 		"messages": [{
-			"role": "user",
-			"content": `You are an expert in writing learning paths in different fields for children. Your goal is to write a learning path that is pedagogically adapted for children at the age of 8 in Israel.The path is learned independently, for 5 days, each day for about an hour and a half. Its goal is to empower independent learning, creativity, and critical thinking. The course should work on the following skills: independent learning, creativity, technological literacy, and critical thinking. On the third day, there is a class meeting for half an hour, and on the fifth and final day, there is a class meeting for an hour. You need to build a template of 5 days, with each day having a title, goal (one or two sentences), and headings of the tasks on that day (3-4 tasks). very important to add ${contentType} to one task per day! (remember that the children at the age of 8 so dont give then something hard). (if you offer videos add link for that) On the fourth day, there is a task dedicated to preparing the learning presentation in front of the entire class. Your topic is ${subject}.The path should teach students to understand ${learn} and create a product (give me ideas for types of products in the context of this project. For example: list, poster, creating an image with an artificial intelligence tool, etc.). During the course, there is no teaching, the students need to understand concepts and acquire knowledge independently through experimentation.Each day should include practical, active work. dont suggest to watch video or install some apps. dont suggest to upload text files beacuse the children have a textbox. Use simple words that children know. Use words that 8 year olds understand. build missions that 8 years old children can do. Pay attention to the instructions of the tasks. Emphasize that the tasks will not be similar`
-		}],
-		"temperature": 0.7
-		}
-}
-
-const test = {
-	"model": "gpt-4",
-	"messages": [{
-		"role": "user",
-		"content": `You are an expert in writing learning paths in different fields for children. Your goal is to write a learning path that is pedagogically adapted for children at the age of 8 in Israel.The path is learned independently, for 5 days, each day for about an hour and a half. Its goal is to empower independent learning, creativity, and critical thinking. The course should work on the following skills: independent learning, creativity, technological literacy, and critical thinking. On the third day, there is a class meeting for half an hour, and on the fifth and final day, there is a class meeting for an hour. You need to build a template of 5 days, with each day having a title, goal (one or two sentences), and headings of the tasks on that day (3-4 tasks). very important to add open ai to one task per day! (remember that the children at the age of 8 so dont give then something hard). (if you offer videos add link for that) On the fourth day, there is a task dedicated to preparing the learning presentation in front of the entire class. Your topic is food.The path should teach students to understand new things about food and create a product (give me ideas for types of products in the context of this project. For example: list, poster, creating an image with an artificial intelligence tool, etc.). During the course, there is no teaching, the students need to understand concepts and acquire knowledge independently through experimentation.Each day should include practical, active work. dont suggest to watch video or install some apps. dont suggest to upload text files beacuse the children have a textbox. Use simple words that children know. Use words that 8 year olds understand. build missions that 8 years old children can do. Pay attention to the instructions of the tasks. Emphasize that the tasks will not be similar`
-	}],
-	"temperature": 0.7
+			"role": "user", 
+			"content": `this is the program structure: ${programStructure}. let's create a plan for each day, for children at the age of 8. Comprised of 3-4 tasks: one of them must be highly creative, and the last one should possess a meta-cognitive nature.It's important that the meta-cognitive task doesn't repeat itself from day to day but rather reflects progress in the student's ability to understand their own learning and the content on the course.Each task needs to be detailed according to this structure: Title Instructions for the task The student's performance documentation method (e.g., uploading a picture/video/file, answering questions, writing text, or pasting links) Estimated duration for completion Guidelines - additions that will help the student understand the task and execute it well. Remember! the age of the childrens is 8 -  Address it in the content you write and how you write it. Use simple words that children at the age of 8 can understood. If there is a fear that a children will not succeed in the task - break down the tasks into small tasks and give more data in the directive.
+			planning only Day 1: allocate 90 minutes for studying in total - it's important to make sure that all tasks for this day will amount to a total of 90 minutes and not more. bring the answer in hebrew`}],
+		"temperature": 0.5,
+		"functions" : [{
+			"name": "create_day_plan",
+			"parameters": {
+				"type": "object",
+				"properties": {
+					"dayPlanTitle" : {"type" : "string", "description" : "day plan title "},
+					"dayPlanContent" : {"type" : "string", "description" : "day plan content "},
+				}
+			}
+		}]
 	}
-
-
+	
+};

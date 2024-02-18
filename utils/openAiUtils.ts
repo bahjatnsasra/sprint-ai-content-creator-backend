@@ -1,5 +1,5 @@
 import  axios  from 'axios'
-import { DALLEUrl, OpenAIGenerateProgramStructure, OpenAIGenerateImage, OpenAIGenerateDescription, OpenAIGenerateSubjects, OpenAIGenerateSubTopics, requestOptions} from './openAiConsts'
+import { DALLEUrl,day1Prompt, OpenAIGenerateImage, OpenAIGenerateDescription, OpenAIGenerateSubjects, OpenAIGenerateSubTopics, requestOptions} from './openAiConsts'
 
 export class OpenAiService {
 
@@ -32,6 +32,7 @@ export class OpenAiService {
 			const description = responseData.choices[0].message.content
 			return description
 		} catch (error) {
+			console.log(error);
 			throw error
 		}
 	}
@@ -48,16 +49,16 @@ export class OpenAiService {
 		}
 	}
 
-	generateProgramStructure = async (subject: string, learn:string , contentType:boolean) => {
+	async generateDay1(structure: string){
 		try {
-			requestOptions.data = OpenAIGenerateProgramStructure(subject,contentType,learn)
-
+			requestOptions.data = day1Prompt(structure)
 			const responseData = (await axios(requestOptions)).data
-			const structure = responseData.choices[0].message.content
-			return structure
+			const dayData = JSON.parse(responseData.choices[0].message.function_call.arguments)
+			console.log(dayData);
 		} catch (error) {
-			console.log(error);
-			throw error
+			throw({msg: new Error(`can't generate Day 1`) , error: error})
 		}
+		
 	}
+	
 }

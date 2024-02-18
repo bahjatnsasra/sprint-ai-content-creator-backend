@@ -8,7 +8,7 @@ export class WeekPlanRepo {
             const newWeekPlan = new WeekPlan()
             await newWeekPlan.save()
             await newWeekPlan.updateOne({programPlan: programPlanId})
-            return newWeekPlan
+            return newWeekPlan.id
         } catch (error) {
             throw(error)
         }

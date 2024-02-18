@@ -10,8 +10,8 @@ export class DayRepositories {
     async createDay(weekPlanId: string, dayData: DayStructure) {
         try {
             const newDay = new Day(dayData)
-            newDay.save()
-            weekPlanRepo.addDayToWeekPlan(weekPlanId,newDay.id)
+            await newDay.save()
+            await weekPlanRepo.addDayToWeekPlan(weekPlanId,newDay.id)
             return newDay
         } catch (error) {
             throw(error)
