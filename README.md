@@ -1,4 +1,4 @@
-# Sprint AI Content Creator
+# Sprint AI Content Creator - Backend
 
 Welcome to Sprint AI Content Creator, an innovative platform designed to streamline the content creation process. Leveraging the power of AI, specifically GPT-4, our tool assists content creators in developing comprehensive content paths, from selecting a subject to acquiring all necessary data for content creation. Built with a Node.js backend and a React.js frontend, Sprint AI Content Creator offers a seamless and efficient workflow for content development.
 
